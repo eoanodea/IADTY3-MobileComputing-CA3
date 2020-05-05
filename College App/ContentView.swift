@@ -9,8 +9,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    var courseList = CourseModel()
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            NavigationView{
+                List(courseList.courseItems) {item in
+                    NavigationLink(destination: CourseDetailView(course: item)) {
+                        CourseRowView(course: item)
+                            .listRowInsets(EdgeInsets())
+                    }
+                }
+            .navigationBarTitle("Courses")
+            }
+        }
     }
 }
 
